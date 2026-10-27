@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+:root{
+  /* palet diambil dari banner situs */
+  --bg:#e9f7df;      /* latar mint muda banner */
+  --soft:#dcefcc;
+  --pale:#f4fbee;
+  --wave1:#709955;   /* hijau gelombang */
+  --wave2:#89aa6c;
+  --wave3:#507536;
+  --leaf:#7cc24a;    /* hijau selada */
+  --ink:#3d4f3d;     /* warna judul banner (lebih tua) */
+  --muted:#5f745a;
+}
+body{font-family:'Plus Jakarta Sans','Segoe UI',Arial,sans-serif;color:var(--ink);background:transparent;padding:10px}
+
+/* ===== HERO: layout dua kolom (teks kiri, ilustrasi hidroponik kanan) ===== */
+.hero{position:relative;overflow:hidden;border-radius:32px;margin-bottom:34px;background:#fff;border:1px solid #deedd2;
+  box-shadow:0 10px 30px rgba(80,117,54,.10);display:grid;grid-template-columns:1.15fr .85fr;align-items:stretch}
+.hero-t{padding:44px 40px 40px 48px;position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:.76rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--wave1)}
+.eyebrow:before{content:"";width:34px;height:3px;border-radius:3px;background:var(--leaf)}
+h1{font-size:clamp(2rem,4.6vw,3.3rem);font-weight:800;line-height:1.05;letter-spacing:-1.5px;color:var(--ink);margin:14px 0 14px}
+h1 em{font-style:normal;color:var(--wave1)}
+.hero-t p{color:var(--muted);font-size:.98rem;line-height:1.7;max-width:460px}
+.stats{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.stat{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:16px;padding:10px 16px}
+.stat b{font-size:1.5rem;font-weight:800;color:var(--wave3);line-height:1}
+.stat small{font-size:.74rem;font-weight:600;color:var(--muted);line-height:1.25}
+.art{position:relative;background:linear-gradient(160deg,var(--bg),#d3ebc3);display:grid;place-items:center;padding:20px;min-height:240px}
+.art:before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(80,117,54,.16) 1.6px,transparent 1.6px);background-size:18px 18px;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 60%);mask-image:linear-gradient(90deg,transparent,#000 60%)}
+.art svg{position:relative;width:100%;max-width:330px;height:auto;filter:drop-shadow(0 12px 14px rgba(80,117,54,.22))}
+@media(max-width:700px){.hero{grid-template-columns:1fr}.hero-t{padding:32px 26px 26px}.art{min-height:200px;order:-1;padding:16px}.art svg{max-width:260px}}
+
+/* ===== DASHBOARD ===== */
+.tagline{display:inline-block;margin-top:20px;background:#fff;color:var(--wave3);font-weight:700;font-size:.9rem;padding:10px 20px;border-radius:40px;border:1px solid #cfe6bd;box-shadow:0 6px 16px rgba(80,117,54,.14)}
+section{margin-bottom:38px}
+.sec{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.sec i{flex:none;width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--wave2),var(--wave1));display:grid;place-items:center;font-style:normal;font-size:1.3rem;box-shadow:0 6px 14px rgba(80,117,54,.25)}
+.sec h2{font-size:clamp(1.3rem,3vw,1.7rem);font-weight:800;letter-spacing:-.5px}
+.sec:after{content:"";flex:1;height:3px;border-radius:3px;background:linear-gradient(90deg,#cfe6bd,transparent)}
+.card{background:#fff;border:1px solid #deedd2;border-radius:26px;box-shadow:0 10px 28px rgba(80,117,54,.09);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(80,117,54,.22)}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+
+/* statistik */
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.st .card{padding:24px 20px;text-align:center;position:relative;overflow:hidden}
+.st .card:after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,var(--wave3),var(--leaf))}
+.st .ico{width:60px;height:60px;margin:0 auto 12px;border-radius:20px;background:var(--bg);display:grid;place-items:center;font-size:1.8rem}
+.st b{display:block;font-size:2.6rem;font-weight:800;line-height:1;color:var(--wave3);letter-spacing:-1px}
+.st b.txt{font-size:2rem;padding:6px 0}
+.st span{display:block;margin-top:8px;font-size:.84rem;font-weight:600;color:var(--muted);line-height:1.4}
+.st .hl{background:linear-gradient(145deg,var(--wave3),var(--wave1));border:0}
+.st .hl b,.st .hl span{color:#fff}.st .hl .ico{background:rgba(255,255,255,.2)}.st .hl:after{background:var(--leaf)}
+
+/* tujuan */
+.goal{position:relative;overflow:hidden;display:flex;gap:24px;align-items:center;padding:34px 36px;border-radius:28px;background:linear-gradient(135deg,var(--bg),#d3ebc3);border:1px solid #cfe6bd}
+.goal:before{content:"“";position:absolute;right:24px;top:-24px;font-size:11rem;font-weight:800;color:rgba(80,117,54,.14);line-height:1}
+.goal .big{flex:none;width:84px;height:84px;border-radius:26px;background:#fff;display:grid;place-items:center;font-size:2.6rem;box-shadow:0 10px 22px rgba(80,117,54,.2);transform:rotate(-6deg)}
+.goal p{position:relative;font-size:1.05rem;line-height:1.8;font-weight:500}
+
+/* kompetensi */
+.komp{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.komp .card{padding:24px 22px 26px;position:relative;overflow:hidden}
+.komp .n{position:absolute;right:16px;top:8px;font-size:3.4rem;font-weight:800;color:rgba(80,117,54,.10);line-height:1}
+.komp .ico{width:62px;height:62px;border-radius:20px;background:linear-gradient(135deg,var(--bg),#cfe6bd);display:grid;place-items:center;font-size:1.9rem;margin-bottom:16px;transition:transform .3s}
+.komp .card:hover .ico{transform:rotate(-8deg) scale(1.1)}
+.komp h3{font-size:1rem;font-weight:800;line-height:1.4}
+
+/* persyaratan */
+.sy{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px}
+.sy .card{display:flex;gap:14px;align-items:center;padding:20px}
+.sy .ico{flex:none;width:52px;height:52px;border-radius:16px;background:var(--bg);display:grid;place-items:center;font-size:1.5rem}
+.sy small{display:block;font-size:.68rem;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:var(--wave1);margin-bottom:3px}
+.sy strong{font-size:.95rem;line-height:1.35;color:var(--ink)}
+
+@media(max-width:620px){.hero{border-radius:26px}.goal{flex-direction:column;text-align:center;padding:28px 22px}.sec:after{display:none}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-t">
+    <div class="eyebrow">Program Pelatihan Berbasis Kompetensi</div>
+    <h1>Hydroponic <em>Automation</em> System</h1>
+    <p>Selamat datang di situs Program Pelatihan Hydroponic Automation System. Silakan jelajahi setiap menu untuk memulai proses belajar Anda.</p>
+    <div class="tagline">🌿 “tanam cerdas, panen otomatis”</div>
+  </div>
+  <div class="art">
+    <svg viewBox="0 0 300 230" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustrasi sistem hidroponik otomatis">
+      <rect x="205" y="18" width="70" height="48" rx="7" fill="#fff" stroke="#4e614e" stroke-width="4"/>
+      <polyline points="215,54 230,44 244,50 262,30" fill="none" stroke="#7cc24a" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="236" y="66" width="6" height="26" fill="#4e614e"/>
+      <rect x="44" y="76" width="7" height="110" rx="3" fill="#4e614e"/><rect x="198" y="76" width="7" height="110" rx="3" fill="#4e614e"/>
+      <rect x="40" y="76" width="170" height="14" rx="7" fill="#fff" stroke="#cfe0c3" stroke-width="2"/>
+      <rect x="40" y="118" width="170" height="14" rx="7" fill="#fff" stroke="#cfe0c3" stroke-width="2"/>
+      <rect x="40" y="160" width="170" height="14" rx="7" fill="#fff" stroke="#cfe0c3" stroke-width="2"/>
+      <g transform="translate(62 70)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g><g transform="translate(100 70)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g><g transform="translate(138 70)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g><g transform="translate(176 70)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g><g transform="translate(62 112)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g><g transform="translate(100 112)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g><g transform="translate(138 112)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g><g transform="translate(176 112)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g><g transform="translate(62 154)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g><g transform="translate(100 154)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g><g transform="translate(138 154)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g><g transform="translate(176 154)"><ellipse cx="-9" cy="-4" rx="9" ry="12" transform="rotate(-35 -9 -4)" fill="#5fa83a"/><ellipse cx="9" cy="-4" rx="9" ry="12" transform="rotate(35 9 -4)" fill="#5fa83a"/><ellipse cx="0" cy="-8" rx="10" ry="14" fill="#7cc24a"/></g>
+      <rect x="214" y="96" width="48" height="40" rx="6" fill="#fff" stroke="#cfe0c3" stroke-width="2"/>
+      <rect x="221" y="103" width="34" height="14" rx="3" fill="#8fd0e8"/>
+      <circle cx="226" cy="126" r="3" fill="#7cc24a"/><circle cx="238" cy="126" r="3" fill="#7cc24a"/><circle cx="250" cy="126" r="3" fill="#7cc24a"/>
+      <path d="M30 190 h190 l-12 30 h-166 z" fill="#4e614e"/>
+      <path d="M38 196 h174 l-6 14 h-162 z" fill="#6ab7e6"/>
+    </svg>
+  </div>
+</header>
+
+<section class="rv">
+  <div class="st">
+    <div class="card hl"><div class="ico">⏱️</div><b data-n="200">0</b><span>Jam Pelajaran<br>(@45 menit)</span></div>
+    <div class="card"><div class="ico">📚</div><b data-n="7">0</b><span>Unit Kompetensi Inti</span></div>
+    <div class="card"><div class="ico">🧑‍🏫</div><b class="txt">Blended</b><span>Metode Pelatihan</span></div>
+    <div class="card"><div class="ico">📘</div><b data-n="2">0</b><span>Acuan SKKNI</span></div>
+  </div>
+</section>
+
+<section class="rv">
+  <div class="sec"><i>🎯</i><h2>Tujuan Pelatihan</h2></div>
+  <div class="goal"><div class="big">🤖</div>
+    <p>Setelah mengikuti pelatihan ini peserta kompeten dalam membuat program sistem otomatisasi dengan mikrokontroler untuk pencampuran nutrisi secara otomatis pada budidaya tanaman sistem hidroponik.</p></div>
+</section>
+
+<section>
+  <div class="sec rv"><i>🏅</i><h2>Profil Kompetensi</h2></div>
+  <div class="komp">
+    <div class="card rv"><span class="n">01</span><div class="ico">🦺</div><h3>Menerapkan Prosedur K3</h3></div>
+    <div class="card rv"><span class="n">02</span><div class="ico">🔧</div><h3>Menyiapkan Instalasi Hidroponik</h3></div>
+    <div class="card rv"><span class="n">03</span><div class="ico">🧪</div><h3>Membuat Larutan Nutrisi</h3></div>
+    <div class="card rv"><span class="n">04</span><div class="ico">🤖</div><h3>Embedded System Programming Mikrokontroler Dasar &amp; Lanjut</h3></div>
+    <div class="card rv"><span class="n">05</span><div class="ico">🌱</div><h3>Memelihara Instalasi Hidroponik</h3></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec rv"><i>📝</i><h2>Persyaratan Peserta</h2></div>
+  <div class="sy">
+    <div class="card rv"><div class="ico">🎓</div><div><small>Pendidikan</small><strong>SLTA / Sederajat</strong></div></div>
+    <div class="card rv"><div class="ico">🎂</div><div><small>Umur</small><strong>Minimal 17 tahun</strong></div></div>
+    <div class="card rv"><div class="ico">💼</div><div><small>Pengalaman</small><strong>Tidak disyaratkan</strong></div></div>
+    <div class="card rv"><div class="ico">💻</div><div><small>Persyaratan Khusus</small><strong>Dapat mengoperasikan komputer</strong></div></div>
+  </div>
+</section>
+
+<script>
+/* muncul saat di-scroll + angka berhitung naik */
+const io = new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting) return;
+  e.target.classList.add('in'); io.unobserve(e.target);
+  e.target.querySelectorAll('[data-n]').forEach(el=>{
+    const to=+el.dataset.n, t0=performance.now(), d=1200;
+    (function step(t){const p=Math.min((t-t0)/d,1);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)})(t0);
+  });
+}),{threshold:.15});
+document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%5)*.07+'s';io.observe(el)});
+/* cadangan: jika IntersectionObserver tidak jalan, tampilkan semua */
+setTimeout(()=>document.querySelectorAll('.rv:not(.in)').forEach(el=>{if(el.getBoundingClientRect().top<innerHeight)el.classList.add('in')}),1500);
+</script>
+</body>
+</html>
